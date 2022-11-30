@@ -8,6 +8,11 @@
 class tappity
 {
     private:
+        std::string m_ref;
+        std::string m_inp;
+
+        std::string get_ref() {return m_ref;};
+        std::string get_inp() {return m_inp;};
 
     public:
         //Constructor sets the reference phrase

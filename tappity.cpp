@@ -6,12 +6,15 @@
 //Constructor sets the reference phrase
 tappity::tappity(std::string reference)
 {
+  m_ref = reference;
 }
 
 //Provide the input to be compared to the reference. Before this 
 //function is called, the input should be considered an empty string
 void tappity::entry(std::string input)
 {
+  //WHY WOULD THE INPUT BE CONSIDERED EMPTY BEFORE CALLING THIS FUCTION??
+  m_inp = input;
 }
 
 //Compares the length of the reference to that of the input and
@@ -19,7 +22,17 @@ void tappity::entry(std::string input)
 //same length
 int tappity::length_difference()
 {
-  return 0;
+
+  int diff = m_inp.size() - m_ref.size();
+  if (diff < 0) diff = diff * (-1);
+  // int nums_matching = 0;
+  // int min = (m_inp.size() < m_ref.size()) ? m_inp.size() : m_ref.size();
+  // int max = (m_inp.size() > m_ref.size()) ? m_inp.size() : m_ref.size();
+  // for (int i = 0; i < min; i++){
+  //   if (m_ref[i] == m_inp[i])
+  //     nums_matching++;
+  // }
+  return diff;
 }
 
 //Compares the content of the reference to that of the input and

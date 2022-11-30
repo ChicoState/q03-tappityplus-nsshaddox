@@ -13,3 +13,10 @@ class tappityTest : public ::testing::Test
 		virtual void SetUp(){}
 		virtual void TearDown(){}
 };
+
+TEST(tappityTest, verify_constructor_input){
+	std::string ref = "test words";
+	tappity t(ref);
+	std::string actual = t.get_ref();
+	ASSERT_EQ(actual, ref);
+}
