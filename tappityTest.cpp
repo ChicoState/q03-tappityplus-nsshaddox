@@ -4,7 +4,6 @@
 
 #include <gtest/gtest.h>
 #include "tappity.h"
-#include <cmath>
  
 class tappityTest : public ::testing::Test
 {
@@ -160,7 +159,7 @@ TEST(tappityTest, acc_case_sensitive){
 	tappity t(ref);
 	t.entry(inp);
 	double actual_diff = t.accuracy();
-	ASSERT_EQ(actual_diff, 0.0);
+	ASSERT_NE(actual_diff, 100.0);
 }
 
 TEST(tappityTest, acc_case_sensitive_with_matching_space){
@@ -170,4 +169,13 @@ TEST(tappityTest, acc_case_sensitive_with_matching_space){
 	t.entry(inp);
 	double actual_diff = t.accuracy();
 	ASSERT_NE(actual_diff, 0.0);
+}
+
+TEST(tappityTest, acc_special_charactors){
+	std::string ref = "!@#$%^&*()\n<>?{}|[]:;";
+	std::string inp = ref;
+	tappity t(ref);
+	t.entry(inp);
+	double actual_diff = t.accuracy();
+	ASSERT_EQ(actual_diff, 100.0);
 }
