@@ -7,13 +7,13 @@
 tappity::tappity(std::string reference)
 {
   m_ref = reference;
+  m_inp = "";
 }
 
 //Provide the input to be compared to the reference. Before this 
 //function is called, the input should be considered an empty string
 void tappity::entry(std::string input)
 {
-  //WHY WOULD THE INPUT BE CONSIDERED EMPTY BEFORE CALLING THIS FUCTION??
   m_inp = input;
 }
 
@@ -22,17 +22,7 @@ void tappity::entry(std::string input)
 //same length
 int tappity::length_difference()
 {
-
-  int diff = m_inp.size() - m_ref.size();
-  if (diff < 0) diff = diff * (-1);
-  // int nums_matching = 0;
-  // int min = (m_inp.size() < m_ref.size()) ? m_inp.size() : m_ref.size();
-  // int max = (m_inp.size() > m_ref.size()) ? m_inp.size() : m_ref.size();
-  // for (int i = 0; i < min; i++){
-  //   if (m_ref[i] == m_inp[i])
-  //     nums_matching++;
-  // }
-  return diff;
+  return abs(m_inp.size() - m_ref.size());
 }
 
 //Compares the content of the reference to that of the input and
@@ -49,5 +39,16 @@ int tappity::length_difference()
 //locations in another string that has 16 characters, the accuracy is 50.
 double tappity::accuracy()
 {
-  return 0;
+  double min = (m_inp.size() < m_ref.size()) ? m_inp.size() : m_ref.size();
+  double max = (m_inp.size() > m_ref.size()) ? m_inp.size() : m_ref.size();
+
+  if(max == 0) return 100.0;
+
+  double nums_matching = 0.0;
+  for (int i = 0; i < min; i++){
+    if (m_ref[i] == m_inp[i])
+      nums_matching += 1.0;
+  }
+
+  return (nums_matching / max) * 100.0;
 }
