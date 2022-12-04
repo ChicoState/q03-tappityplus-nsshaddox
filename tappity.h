@@ -1,7 +1,6 @@
 #ifndef _TAPPITY_H_
 #define _TAPPITY_H_
 #include <string>
-#include <cmath>
 
 /**
  * Class for tappity
